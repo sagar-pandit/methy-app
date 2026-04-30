@@ -1,0 +1,55 @@
+# docker-compose.override.yml — Development overrides
+# Applied automatically when running: docker compose up
+# Provides dev-friendly port mappings, env vars, and volume mounts.
+
+services:
+  sql-server:
+    ports:
+      - '11433:1433' # Alternate port if 1433 is in use locally
+
+  rabbitmq:
+    ports:
+      - '15673:5672' # Alternate AMQP port
+      - '15674:15672' # Alternate management port
+
+  methy-gateway:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq
+
+  methy-user:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq
+
+  methy-restaurant:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq
+
+  methy-order:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq
+
+  methy-payment:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq
+
+  methy-notification:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq
+
+  methy-delivery:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: 'Server=sql-server,1433;Database=methy;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=true'
+      RabbitMQ__Host: rabbitmq

@@ -1,0 +1,276 @@
+# Kubernetes Deployments — Methy Microservices
+# One Deployment per service; adjust replica counts for production.
+# Images are pulled from the registry defined per service.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-gateway
+  namespace: methy
+  labels:
+    app: methy-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-gateway
+  template:
+    metadata:
+      labels:
+        app: methy-gateway
+    spec:
+      containers:
+        - name: methy-gateway
+          image: methy-gateway:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-user
+  namespace: methy
+  labels:
+    app: methy-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-user
+  template:
+    metadata:
+      labels:
+        app: methy-user
+    spec:
+      containers:
+        - name: methy-user
+          image: methy-user:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-restaurant
+  namespace: methy
+  labels:
+    app: methy-restaurant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-restaurant
+  template:
+    metadata:
+      labels:
+        app: methy-restaurant
+    spec:
+      containers:
+        - name: methy-restaurant
+          image: methy-restaurant:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-order
+  namespace: methy
+  labels:
+    app: methy-order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-order
+  template:
+    metadata:
+      labels:
+        app: methy-order
+    spec:
+      containers:
+        - name: methy-order
+          image: methy-order:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-payment
+  namespace: methy
+  labels:
+    app: methy-payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-payment
+  template:
+    metadata:
+      labels:
+        app: methy-payment
+    spec:
+      containers:
+        - name: methy-payment
+          image: methy-payment:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-notification
+  namespace: methy
+  labels:
+    app: methy-notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-notification
+  template:
+    metadata:
+      labels:
+        app: methy-notification
+    spec:
+      containers:
+        - name: methy-notification
+          image: methy-notification:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: methy-delivery
+  namespace: methy
+  labels:
+    app: methy-delivery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: methy-delivery
+  template:
+    metadata:
+      labels:
+        app: methy-delivery
+    spec:
+      containers:
+        - name: methy-delivery
+          image: methy-delivery:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10

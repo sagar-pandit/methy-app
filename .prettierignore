@@ -1,0 +1,9 @@
+bin/
+obj/
+node_modules/
+dist/
+*.sln
+*.csproj
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

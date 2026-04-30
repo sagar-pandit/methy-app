@@ -1,0 +1,38 @@
+openapi: "3.0.3"
+info:
+  title: Methy API Gateway
+  description: |
+    Entry point for all Methy platform client requests. Routes traffic to
+    downstream domain microservices. Authentication and rate limiting will
+    be enforced here in future phases.
+  version: "0.1.0"
+  contact:
+    name: Sagar Pandit
+servers:
+  - url: http://localhost:5000
+    description: Local development
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns the health status of the API Gateway. Used by Docker and Kubernetes health probes.
+      operationId: getGatewayHealth
+      tags:
+        - Health
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          example: Healthy

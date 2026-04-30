@@ -1,0 +1,38 @@
+openapi: "3.0.3"
+info:
+  title: Methy Notification Service
+  description: |
+    Sends and manages notifications for the Methy platform: order confirmations,
+    delivery status updates, and promotional messages via email and push.
+    Full API contract will be defined in Phase 6 (Notifications).
+  version: "0.1.0"
+  contact:
+    name: Sagar Pandit
+servers:
+  - url: http://localhost:5005
+    description: Local development
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns the health status of the Notification Service. Used by Docker and Kubernetes health probes.
+      operationId: getNotificationServiceHealth
+      tags:
+        - Health
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          example: Healthy

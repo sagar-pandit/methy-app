@@ -1,0 +1,6 @@
+@Methy.Services.Restaurant_HostAddress = http://localhost:5128
+
+GET {{Methy.Services.Restaurant_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

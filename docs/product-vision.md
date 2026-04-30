@@ -124,7 +124,7 @@ Before starting this project, participants should have:
 - 💻 **Computer**: Windows 10/11, 8GB RAM minimum (16GB recommended for Docker)
 - 💻 **Required Software**: 
   - Visual Studio Code with extensions
-  - Node.js (LTS version)
+  - Node.js 20 LTS (pinned via `.nvmrc`)
   - .NET 10 SDK
   - Docker Desktop (primary development environment)
   - Git for Windows
@@ -359,9 +359,9 @@ The Methy platform follows a **cloud-native microservices architecture**:
         ┌────────────┼────────────┐
         ↓            ↓            ↓
     ┌────────┐  ┌──────────┐  ┌─────────┐
-    │SQL     │  │  Azure   │  │ Azure   │
-    │Server  │  │  Service │  │Functions│
-    │        │  │  Bus     │  │         │
+    │SQL     │  │ RabbitMQ │  │ Docker  │
+    │Server  │  │ (Message │  │ (Local  │
+    │        │  │  Broker) │  │  Infra) │
     └────────┘  └──────────┘  └─────────┘
 ```
 
@@ -378,7 +378,7 @@ The Methy platform follows a **cloud-native microservices architecture**:
 - Service-to-service communication via events and APIs
 
 #### 2. Event-Driven Design
-- Azure Service Bus for asynchronous messaging
+- RabbitMQ for asynchronous messaging (local-first; Azure Service Bus deferred)
 - Saga pattern for distributed transactions
 - Event sourcing where appropriate
 - Dead-letter queues for failed messages

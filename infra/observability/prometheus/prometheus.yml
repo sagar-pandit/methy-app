@@ -1,0 +1,39 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'methy-gateway'
+    static_configs:
+      - targets: ['methy-gateway:8080']
+    metrics_path: /metrics
+
+  - job_name: 'methy-user'
+    static_configs:
+      - targets: ['methy-user:8080']
+    metrics_path: /metrics
+
+  - job_name: 'methy-restaurant'
+    static_configs:
+      - targets: ['methy-restaurant:8080']
+    metrics_path: /metrics
+
+  - job_name: 'methy-order'
+    static_configs:
+      - targets: ['methy-order:8080']
+    metrics_path: /metrics
+
+  - job_name: 'methy-payment'
+    static_configs:
+      - targets: ['methy-payment:8080']
+    metrics_path: /metrics
+
+  - job_name: 'methy-notification'
+    static_configs:
+      - targets: ['methy-notification:8080']
+    metrics_path: /metrics
+
+  - job_name: 'methy-delivery'
+    static_configs:
+      - targets: ['methy-delivery:8080']
+    metrics_path: /metrics

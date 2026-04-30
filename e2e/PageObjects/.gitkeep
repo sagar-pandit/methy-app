@@ -1,0 +1,11 @@
+// PageObjects directory — Page Object Model (POM) pattern for Playwright tests.
+// Create one class per page/feature area to encapsulate selectors and actions.
+//
+// Example:
+//   public class RestaurantsPage(IPage page)
+//   {
+//       public async Task GoToAsync() => await page.GotoAsync("/restaurants");
+//       public ILocator RestaurantCards => page.Locator("[data-testid='restaurant-card']");
+//   }
+//
+// Add PageObject classes here as the Angular application is built out.

@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Methy.Gateway/Methy.Gateway.csproj" />
+    <Project Path="src/Methy.Services.Delivery/Methy.Services.Delivery.csproj" />
+    <Project Path="src/Methy.Services.Notification/Methy.Services.Notification.csproj" />
+    <Project Path="src/Methy.Services.Order/Methy.Services.Order.csproj" />
+    <Project Path="src/Methy.Services.Payment/Methy.Services.Payment.csproj" />
+    <Project Path="src/Methy.Services.Restaurant/Methy.Services.Restaurant.csproj" />
+    <Project Path="src/Methy.Services.User/Methy.Services.User.csproj" />
+    <Project Path="src/Methy.Shared/Methy.Shared.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Methy.Gateway.Tests/Methy.Gateway.Tests.csproj" />
+    <Project Path="tests/Methy.Services.Delivery.Tests/Methy.Services.Delivery.Tests.csproj" />
+    <Project Path="tests/Methy.Services.Notification.Tests/Methy.Services.Notification.Tests.csproj" />
+    <Project Path="tests/Methy.Services.Order.Tests/Methy.Services.Order.Tests.csproj" />
+    <Project Path="tests/Methy.Services.Payment.Tests/Methy.Services.Payment.Tests.csproj" />
+    <Project Path="tests/Methy.Services.Restaurant.Tests/Methy.Services.Restaurant.Tests.csproj" />
+    <Project Path="tests/Methy.Services.User.Tests/Methy.Services.User.Tests.csproj" />
+    <Project Path="tests/Methy.Shared.Tests/Methy.Shared.Tests.csproj" />
+  </Folder>
+</Solution>
