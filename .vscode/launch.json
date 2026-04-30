@@ -1,0 +1,110 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Gateway",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-gateway",
+      "program": "${workspaceFolder}/backend/src/Methy.Gateway/bin/Debug/net10.0/Methy.Gateway.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Gateway",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    },
+    {
+      "name": "User Service",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-user",
+      "program": "${workspaceFolder}/backend/src/Methy.Services.User/bin/Debug/net10.0/Methy.Services.User.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Services.User",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5001"
+      }
+    },
+    {
+      "name": "Restaurant Service",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-restaurant",
+      "program": "${workspaceFolder}/backend/src/Methy.Services.Restaurant/bin/Debug/net10.0/Methy.Services.Restaurant.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Services.Restaurant",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5002"
+      }
+    },
+    {
+      "name": "Order Service",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-order",
+      "program": "${workspaceFolder}/backend/src/Methy.Services.Order/bin/Debug/net10.0/Methy.Services.Order.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Services.Order",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5003"
+      }
+    },
+    {
+      "name": "Payment Service",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-payment",
+      "program": "${workspaceFolder}/backend/src/Methy.Services.Payment/bin/Debug/net10.0/Methy.Services.Payment.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Services.Payment",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5004"
+      }
+    },
+    {
+      "name": "Notification Service",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-notification",
+      "program": "${workspaceFolder}/backend/src/Methy.Services.Notification/bin/Debug/net10.0/Methy.Services.Notification.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Services.Notification",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5005"
+      }
+    },
+    {
+      "name": "Delivery Service",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-delivery",
+      "program": "${workspaceFolder}/backend/src/Methy.Services.Delivery/bin/Debug/net10.0/Methy.Services.Delivery.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Methy.Services.Delivery",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5006"
+      }
+    },
+    {
+      "name": "Angular (ng serve)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/frontend/methy-app/src"
+    }
+  ]
+}

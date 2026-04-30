@@ -1,0 +1,38 @@
+openapi: "3.0.3"
+info:
+  title: Methy Restaurant Service
+  description: |
+    Manages restaurant listings, menus, categories, and availability for the Methy platform.
+    Handles restaurant search, menu browsing, and item management.
+    Full API contract will be defined in Phase 3 (Restaurant Browsing & Menu Display).
+  version: "0.1.0"
+  contact:
+    name: Sagar Pandit
+servers:
+  - url: http://localhost:5002
+    description: Local development
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns the health status of the Restaurant Service. Used by Docker and Kubernetes health probes.
+      operationId: getRestaurantServiceHealth
+      tags:
+        - Health
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          example: Healthy

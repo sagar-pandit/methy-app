@@ -1,0 +1,50 @@
+name: Deploy
+
+# Skeleton workflow — all steps are commented out until deployment target is configured.
+# Uncomment and configure for your target environment (AKS, ECS, etc.)
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - production
+
+# jobs:
+#   deploy:
+#     name: Deploy to ${{ inputs.environment }}
+#     runs-on: ubuntu-latest
+#     environment: ${{ inputs.environment }}
+#
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#
+#       # ─── Configure kubectl ───────────────────────────────────────────────
+#       # - name: Set up kubeconfig
+#       #   uses: azure/k8s-set-context@v4
+#       #   with:
+#       #     kubeconfig: ${{ secrets.KUBECONFIG }}
+#
+#       # ─── Apply manifests ─────────────────────────────────────────────────
+#       # - name: Apply K8s manifests
+#       #   run: kubectl apply -f infra/k8s/ --namespace=methy
+#
+#       # ─── Rolling restart ─────────────────────────────────────────────────
+#       # - name: Rollout restart
+#       #   run: |
+#       #     for svc in methy-gateway methy-user methy-restaurant methy-order methy-payment methy-notification methy-delivery; do
+#       #       kubectl rollout restart deployment/$svc --namespace=methy
+#       #     done
+#
+#       # ─── Wait for rollout ────────────────────────────────────────────────
+#       # - name: Wait for rollout
+#       #   run: |
+#       #     for svc in methy-gateway methy-user methy-restaurant methy-order methy-payment methy-notification methy-delivery; do
+#       #       kubectl rollout status deployment/$svc --namespace=methy --timeout=5m
+#       #     done

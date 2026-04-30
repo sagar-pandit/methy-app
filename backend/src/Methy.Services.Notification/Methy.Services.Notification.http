@@ -1,0 +1,6 @@
+@Methy.Services.Notification_HostAddress = http://localhost:5067
+
+GET {{Methy.Services.Notification_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

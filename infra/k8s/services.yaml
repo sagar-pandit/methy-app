@@ -1,0 +1,100 @@
+# Kubernetes Services — Methy Microservices
+# ClusterIP for internal communication; ports match container 8080.
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-gateway
+  namespace: methy
+spec:
+  selector:
+    app: methy-gateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-user
+  namespace: methy
+spec:
+  selector:
+    app: methy-user
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-restaurant
+  namespace: methy
+spec:
+  selector:
+    app: methy-restaurant
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-order
+  namespace: methy
+spec:
+  selector:
+    app: methy-order
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-payment
+  namespace: methy
+spec:
+  selector:
+    app: methy-payment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-notification
+  namespace: methy
+spec:
+  selector:
+    app: methy-notification
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: methy-delivery
+  namespace: methy
+spec:
+  selector:
+    app: methy-delivery
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

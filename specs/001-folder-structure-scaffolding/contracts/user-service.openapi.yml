@@ -1,0 +1,38 @@
+openapi: "3.0.3"
+info:
+  title: Methy User Service
+  description: |
+    Manages user accounts, authentication, and profiles for the Methy platform.
+    Handles registration, login, profile updates, and address management.
+    Full API contract will be defined in Phase 2 (Authentication & User Management).
+  version: "0.1.0"
+  contact:
+    name: Sagar Pandit
+servers:
+  - url: http://localhost:5001
+    description: Local development
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns the health status of the User Service. Used by Docker and Kubernetes health probes.
+      operationId: getUserServiceHealth
+      tags:
+        - Health
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          example: Healthy

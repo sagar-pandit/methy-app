@@ -1,0 +1,20 @@
+{
+  "info": {
+    "_postman_id": "methy-delivery",
+    "name": "Methy - Delivery Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{deliveryServiceUrl}}/health",
+          "host": ["{{deliveryServiceUrl}}"],
+          "path": ["health"]
+        }
+      }
+    }
+  ]
+}

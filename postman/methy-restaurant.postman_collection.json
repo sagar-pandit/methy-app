@@ -1,0 +1,31 @@
+{
+  "info": {
+    "_postman_id": "methy-restaurant",
+    "name": "Methy - Restaurant Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{restaurantServiceUrl}}/health",
+          "host": ["{{restaurantServiceUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "List Restaurants",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{restaurantServiceUrl}}/api/restaurants",
+          "host": ["{{restaurantServiceUrl}}"],
+          "path": ["api", "restaurants"]
+        }
+      }
+    }
+  ]
+}

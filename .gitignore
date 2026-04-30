@@ -1,0 +1,36 @@
+# .NET build output
+bin/
+obj/
+
+# Node
+node_modules/
+.angular/
+dist/
+
+# Environment secrets — NEVER commit real values
+.env
+.env.*
+!.env.example
+
+# IDE
+.vs/
+*.user
+*.suo
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+.nuget/
+
+# Test results
+TestResults/
+coverage/

@@ -1,0 +1,50 @@
+{
+  "rabbit_version": "3.13.0",
+  "rabbitmq_version": "3.13.0",
+  "product_name": "RabbitMQ",
+  "product_version": "3.13.0",
+  "vhosts": [
+    {
+      "name": "methy"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "methy",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "methy.events",
+      "vhost": "methy",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "queues": [
+    {
+      "name": "methy.orders",
+      "vhost": "methy",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "methy.events",
+      "vhost": "methy",
+      "destination": "methy.orders",
+      "destination_type": "queue",
+      "routing_key": "order.*",
+      "arguments": {}
+    }
+  ]
+}

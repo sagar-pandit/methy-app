@@ -1,0 +1,63 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: methy-ingress
+  namespace: methy
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: methy.local
+      http:
+        paths:
+          - path: /api/users(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-user
+                port:
+                  number: 80
+          - path: /api/restaurants(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-restaurant
+                port:
+                  number: 80
+          - path: /api/orders(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-order
+                port:
+                  number: 80
+          - path: /api/payments(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-payment
+                port:
+                  number: 80
+          - path: /api/notifications(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-notification
+                port:
+                  number: 80
+          - path: /api/delivery(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-delivery
+                port:
+                  number: 80
+          - path: /(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: methy-gateway
+                port:
+                  number: 80
