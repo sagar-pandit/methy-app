@@ -1,6 +1,3 @@
-﻿namespace Methy.Shared;
+namespace Methy.Shared;
 
-public class Class1
-{
-
-}
+public static class SharedAssemblyMarker;

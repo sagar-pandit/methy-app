@@ -1,7 +1,7 @@
 # Methy Platform — Folder Structure
 
-> Canonical reference for the scaffolded repository layout.  
-> Source of truth: [spec.md](../specs/001-folder-structure-scaffolding/spec.md)
+> Canonical reference for the scaffolded repository layout.
+> Source of truth: [spec.md](../../specs/001-folder-structure-scaffolding/spec.md)
 
 ```
 Methy/                                   ← repository root
@@ -28,7 +28,7 @@ Methy/                                   ← repository root
 │
 ├── .github/
 │   ├── PULL_REQUEST_TEMPLATE.md          ← PR checklist
-│   ├── dependabot.yml                   ← Weekly dependency updates
+│   ├── dependabot.yml                   ← Monthly dependency updates
 │   └── workflows/
 │       ├── build.yml                    ← .NET build + test
 │       ├── docker.yml                   ← Docker image builds
@@ -45,7 +45,7 @@ Methy/                                   ← repository root
 │   └── delivery-service.openapi.yml
 │
 ├── backend/                             ← .NET 10 solution
-│   ├── Methy.sln
+│   ├── Methy.slnx
 │   ├── Directory.Build.props
 │   ├── Directory.Packages.props
 │   │
@@ -93,7 +93,7 @@ Methy/                                   ← repository root
 │   └── PageObjects/
 │       └── (page object models)
 │
-├── frontend/                            ← Angular 19 + Material Design 3
+├── frontend/                            ← Angular 21 + Material Design 3
 │   └── methy-app/
 │       ├── angular.json
 │       ├── package.json
@@ -129,10 +129,10 @@ Methy/                                   ← repository root
 │   │       └── init.sql                 ← CREATE DATABASE methy
 │   │
 │   ├── k8s/
-│   │   ├── namespace.yml                ← methy namespace
-│   │   ├── deployments/                 ← One per service
-│   │   ├── services/                    ← One ClusterIP per service
-│   │   └── ingress/                     ← Nginx ingress → Gateway
+│   │   ├── namespace.yaml               ← methy namespace
+│   │   ├── deployments.yaml             ← Deployments for all services
+│   │   ├── services.yaml                ← ClusterIP services for all services
+│   │   └── ingress.yaml                 ← Nginx ingress → Gateway
 │   │
 │   └── observability/                   ← All under 'observability' compose profile
 │       ├── prometheus/
@@ -142,13 +142,13 @@ Methy/                                   ← repository root
 │       └── jaeger/                      ← All-in-one config
 │
 ├── postman/                             ← API testing collections
-│   ├── gateway.postman_collection.json
-│   ├── user-service.postman_collection.json
-│   ├── restaurant-service.postman_collection.json
-│   ├── order-service.postman_collection.json
-│   ├── payment-service.postman_collection.json
-│   ├── notification-service.postman_collection.json
-│   ├── delivery-service.postman_collection.json
+│   ├── methy-gateway.postman_collection.json
+│   ├── methy-user.postman_collection.json
+│   ├── methy-restaurant.postman_collection.json
+│   ├── methy-order.postman_collection.json
+│   ├── methy-payment.postman_collection.json
+│   ├── methy-notification.postman_collection.json
+│   ├── methy-delivery.postman_collection.json
 │   └── methy-local.postman_environment.json
 │
 ├── scripts/                             ← Dev automation (PowerShell)
@@ -173,31 +173,31 @@ Methy/                                   ← repository root
 
 ## Port Assignments
 
-| Service | Port |
-|---------|------|
-| Angular Dev Server | 4200 |
-| API Gateway | 5000 |
-| User Service | 5001 |
-| Restaurant Service | 5002 |
-| Order Service | 5003 |
-| Payment Service | 5004 |
-| Notification Service | 5005 |
-| Delivery Service | 5006 |
-| SQL Server | 1433 |
-| RabbitMQ (AMQP) | 5672 |
+| Service               | Port  |
+| --------------------- | ----- |
+| Angular Dev Server    | 4200  |
+| API Gateway           | 5000  |
+| User Service          | 5001  |
+| Restaurant Service    | 5002  |
+| Order Service         | 5003  |
+| Payment Service       | 5004  |
+| Notification Service  | 5005  |
+| Delivery Service      | 5006  |
+| SQL Server            | 1433  |
+| RabbitMQ (AMQP)       | 5672  |
 | RabbitMQ (Management) | 15672 |
-| Prometheus | 9090 |
-| Grafana | 3000 |
-| Jaeger UI | 16686 |
+| Prometheus            | 9090  |
+| Grafana               | 3000  |
+| Jaeger UI             | 16686 |
 
 ## Quick Commands
 
 ```powershell
 # Build all backend projects
-cd backend && dotnet build Methy.sln
+cd backend && dotnet build Methy.slnx
 
 # Run all tests
-cd backend && dotnet test
+cd backend && dotnet test Methy.slnx
 
 # Start core infrastructure (SQL Server, RabbitMQ, microservices)
 cd infra/docker && docker compose up -d

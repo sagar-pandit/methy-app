@@ -1,4 +1,0 @@
-{
-  "*.cs": ["dotnet format --include {files} --verify-no-changes"],
-  "*.{ts,html,scss}": ["eslint --fix", "prettier --write"]
-}

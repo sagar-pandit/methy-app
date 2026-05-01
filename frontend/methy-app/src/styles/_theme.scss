@@ -1,11 +1,8 @@
 // Methy Custom Material 3 Theme
 // Uses mat.define-theme() for M3 design tokens.
-// Primary: Orange, Tertiary: Deep Purple
+// Primary: Orange, Tertiary: Violet
 
 @use '@angular/material' as mat;
-
-// Include Material core styles (resets, overlay, etc.)
-@include mat.core();
 
 // Define the M3 theme with custom palettes
 $methy-theme: mat.define-theme(
@@ -13,7 +10,7 @@ $methy-theme: mat.define-theme(
     color: (
       theme-type: light,
       primary: mat.$orange-palette,
-      tertiary: mat.$deep-purple-palette,
+      tertiary: mat.$violet-palette,
     ),
     density: (
       scale: 0,
@@ -24,7 +21,6 @@ $methy-theme: mat.define-theme(
 // Apply theme to the entire application
 :root {
   @include mat.all-component-themes($methy-theme);
-  @include mat.core-theme($methy-theme);
 }
 
 // Dark mode (respects OS preference)
@@ -34,7 +30,7 @@ $methy-theme: mat.define-theme(
       color: (
         theme-type: dark,
         primary: mat.$orange-palette,
-        tertiary: mat.$deep-purple-palette,
+        tertiary: mat.$violet-palette,
       ),
     )
   );

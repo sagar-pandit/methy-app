@@ -43,7 +43,10 @@ jobs:
           queries: security-extended
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+        if: matrix.language == 'csharp'
+        run: |
+          dotnet restore backend/Methy.slnx
+          dotnet build backend/Methy.slnx --configuration Release --no-restore
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3

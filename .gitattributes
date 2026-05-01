@@ -1,5 +1,7 @@
-# Auto detect text files and perform LF normalization
+# ...existing content, but all lines use LF endings only...
+# Enforce consistent line endings and prevent CRLF/LF warnings
 * text=auto eol=lf
+
 
 # Explicitly declare text files to always use LF
 *.cs        text eol=lf
@@ -18,7 +20,7 @@
 *.scss      text eol=lf
 *.xml       text eol=lf
 *.config    text eol=lf
-*.ps1       text eol=lf
+*.ps1       text eol=crlf
 Dockerfile  text eol=lf
 .dockerignore text eol=lf
 

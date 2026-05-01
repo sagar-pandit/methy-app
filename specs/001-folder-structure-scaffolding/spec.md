@@ -7,7 +7,7 @@
 
 ---
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - Developer Clones Repo and Runs Locally (Priority: P1)
 
@@ -19,7 +19,7 @@ A new developer (Sagar) clones the Methy repository and wants to verify the proj
 
 **Acceptance Scenarios**:
 
-1. **Given** a clean clone of the repository, **When** `dotnet build Methy.sln` is run from `backend/`, **Then** all 16 projects (8 source + 8 test) compile with zero errors and zero warnings
+1. **Given** a clean clone of the repository, **When** `dotnet build Methy.slnx` is run from `backend/`, **Then** all 16 projects (8 source + 8 test) compile with zero errors and zero warnings
 2. **Given** the cloned repository, **When** `docker-compose up -d` is run from `infra/docker/`, **Then** SQL Server, RabbitMQ, and supporting containers start and pass health checks within 60 seconds
 3. **Given** the cloned repository, **When** `ng serve` is run from `frontend/methy-app/`, **Then** the Angular development server starts and serves the application at `http://localhost:4200`
 4. **Given** the cloned repository, **When** `dotnet test` is run from `backend/`, **Then** all 8 test projects are discovered and execute (passing, even if empty)
@@ -67,13 +67,13 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 
 ---
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
 **Backend Solution Structure**
 
-- **FR-001**: The scaffold MUST create a `.NET 10` solution file `Methy.sln` under `backend/` containing all 16 projects (8 source, 8 test)
+- **FR-001**: The scaffold MUST create a `.NET 10` solution file `Methy.slnx` under `backend/` containing all 16 projects (8 source, 8 test)
 - **FR-002**: Each of the 7 runnable service source projects (API Gateway + 6 domain services) MUST be an ASP.NET Core Web API project targeting `.NET 10`; `Methy.Shared` is a class library (see FR-004)
 - **FR-003**: Each source project (including `Methy.Shared`) MUST have a corresponding XUnit test project (e.g., `Methy.Services.User.Tests`, `Methy.Shared.Tests`) referencing it
 - **FR-004**: `Methy.Shared` MUST be a class library (not a Web API) referenced by all service projects
@@ -85,7 +85,7 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 **Container Configuration**
 
 - **FR-009**: Every runnable service project (all source projects except `Methy.Shared` class library) MUST include a `Dockerfile` using multi-stage build (build stage + runtime stage); total of 7 Dockerfiles. Each service MUST also have a `.dockerignore` file excluding `bin/`, `obj/`, `node_modules/`, `*.md`, `.git/`, and IDE-specific folders to minimize build context and prevent secret leakage
-- **FR-010**: `infra/docker/docker-compose.yml` MUST use Docker Compose V2 specification (no top-level `version:` key). It MUST define services for: SQL Server 2022, RabbitMQ (with management plugin), and each of the 7 runnable microservices (API Gateway + 6 domain services); all containers MUST share a single `methy-network` bridge network. *(See also FR-035 for observability services, FR-040 for profile assignment, FR-011 for health checks, FR-012 for dev overrides)*
+- **FR-010**: `infra/docker/docker-compose.yml` MUST use Docker Compose V2 specification (no top-level `version:` key). It MUST define services for: SQL Server 2022, RabbitMQ (with management plugin), and each of the 7 runnable microservices (API Gateway + 6 domain services); all containers MUST share a single `methy-network` bridge network. _(See also FR-035 for observability services, FR-040 for profile assignment, FR-011 for health checks, FR-012 for dev overrides)_
 - **FR-011**: `docker-compose.yml` MUST define health checks for SQL Server and RabbitMQ containers
 - **FR-012**: `docker-compose.override.yml` MUST provide development overrides (port mappings, environment variables, volume mounts for hot reload)
 - **FR-036**: `infra/docker/rabbitmq/` MUST contain a placeholder `definitions.json` defining a `methy` virtual host with stub exchange and queue definitions for message topology reference
@@ -93,25 +93,25 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 
 **Frontend Structure**
 
-- **FR-013**: The scaffold MUST create an Angular 19 workspace under `frontend/methy-app/` with Angular Material 3 installed and configured
+- **FR-013**: The scaffold MUST create an Angular 21 workspace under `frontend/methy-app/` with Angular Material 3 installed and configured
 - **FR-014**: A custom Angular Material 3 theme MUST be defined in `_theme.scss` using the M3 theming API (`mat.define-theme()` with `mat.theme()` mixin) with Orange as the primary palette, Deep Purple as the tertiary palette, and system-default error/neutral palettes; both light and dark color schemes MUST be configured via `prefers-color-scheme` media query or class-based toggle
-- **FR-015**: The Angular app MUST use standalone-first architecture (Angular 19 default): no `AppModule`, `CoreModule`, or `SharedModule`; providers configured via `app.config.ts`; authentication interceptor stubbed as a functional `HttpInterceptorFn` and route guards stubbed as functional `CanActivateFn`/`CanMatchFn`; shared Material components declared as standalone components in a `shared/` folder
+- **FR-015**: The Angular app MUST use standalone-first architecture (Angular 21 default): no `AppModule`, `CoreModule`, or `SharedModule`; providers configured via `app.config.ts`; authentication interceptor stubbed as a functional `HttpInterceptorFn` and route guards stubbed as functional `CanActivateFn`/`CanMatchFn`; shared Material components declared as standalone components in a `shared/` folder
 - **FR-016**: Feature area placeholder folders MUST exist under `frontend/methy-app/src/app/features/` for: `restaurants`, `orders`, `delivery`, `admin`, `profile`; each folder MUST contain a placeholder `README.md` naming the feature area's domain responsibility (no NgModules — standalone-first architecture)
 - **FR-017**: Angular environments MUST be configured for `development` (local API gateway URL) and `production` (placeholder)
 
 **Kubernetes Manifests**
 
-- **FR-018**: `infra/k8s/` MUST contain a `namespace.yml` defining the `methy` namespace
-- **FR-019**: `infra/k8s/deployments/` MUST contain one placeholder deployment manifest per microservice
-- **FR-020**: `infra/k8s/services/` MUST contain one placeholder ClusterIP service manifest per microservice
-- **FR-021**: `infra/k8s/ingress/` MUST contain a placeholder Nginx ingress manifest routing to the API Gateway
+- **FR-018**: `infra/k8s/` MUST contain a `namespace.yaml` defining the `methy` namespace
+- **FR-019**: `infra/k8s/deployments.yaml` MUST contain placeholder deployment manifests for all microservices (multi-document YAML)
+- **FR-020**: `infra/k8s/services.yaml` MUST contain placeholder ClusterIP service manifests for all microservices (multi-document YAML)
+- **FR-021**: `infra/k8s/ingress.yaml` MUST contain a placeholder Nginx ingress manifest routing to the API Gateway
 
 **Observability Configuration**
 
 - **FR-022**: `infra/observability/prometheus/prometheus.yml` MUST define scrape configs targeting each microservice's `/metrics` endpoint
 - **FR-023**: `infra/observability/grafana/` MUST contain provisioning configuration (datasources, dashboard folders)
 - **FR-024**: `infra/observability/jaeger/` MUST contain a Jaeger all-in-one Docker configuration
-- **FR-035**: `infra/docker/docker-compose.yml` MUST include service definitions for Prometheus (port 9090), Grafana (port 3000), and Jaeger all-in-one (port 16686) on the `methy-network`, referencing the configuration files defined in `infra/observability/`; these services MUST be assigned to the `observability` compose profile *(see FR-040 for profile semantics, FR-010 for core services)*
+- **FR-035**: `infra/docker/docker-compose.yml` MUST include service definitions for Prometheus (port 9090), Grafana (port 3000), and Jaeger all-in-one (port 16686) on the `methy-network`, referencing the configuration files defined in `infra/observability/`; these services MUST be assigned to the `observability` compose profile _(see FR-040 for profile semantics, FR-010 for core services)_
 
 **CI/CD Workflows**
 
@@ -128,13 +128,13 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 - **FR-032**: Each service MUST use a fixed, documented port assignment across `appsettings.Development.json`, `docker-compose.yml`, and Prometheus scrape config: API Gateway=5000, User Service=5001, Restaurant Service=5002, Order Service=5003, Payment Service=5004, Notification Service=5005, Delivery Service=5006; `Methy.Shared` is a library with no port
 - **FR-033**: The repository MUST contain the following top-level structural directories: `docs/` with subdirectories `architecture/` (for ADRs and diagrams) and `guides/` (for setup and contribution guides); `api/` at the repository root (for hand-written, contract-first OpenAPI 3.0 YAML stubs per service — defined before implementation per Constitution Principle IV). Each subdirectory MUST contain a placeholder `README.md` describing its purpose
 - **FR-034**: A `.editorconfig` file MUST exist at the repository root defining: indent style (spaces), indent size (2 for JSON/YAML/HTML, 4 for C#/TypeScript), end-of-line (LF), charset (utf-8), and trim trailing whitespace
-- **FR-038**: A `.nvmrc` file MUST exist at the repository root pinning the Node.js version to `20` (LTS) for consistent frontend tooling across environments; Angular 19 officially supports Node 20 LTS
+- **FR-038**: A `.nvmrc` file MUST exist at the repository root pinning the Node.js version to `20` (LTS) for consistent frontend tooling across environments; Angular 21 officially supports Node 20 LTS
 - **FR-039**: A `CONTRIBUTING.md` file MUST exist at the repository root documenting: branch naming conventions, commit message format (conventional commits), PR workflow, code quality gates (tests pass, lint clean, no TODOs without linked issues), and how to run the full local stack
 - **FR-040**: `infra/docker/docker-compose.yml` MUST use Docker Compose profiles: core services (SQL Server, RabbitMQ, microservices) have **no profile assigned** and start with a plain `docker compose up`; observability services (Prometheus, Grafana, Jaeger) are assigned to the `observability` profile and only start when explicitly requested via `docker compose --profile observability up`. This enables developers with 8GB RAM to run the essential stack without observability overhead
 
 **End-to-End Tests**
 
-- **FR-041**: A top-level `e2e/` folder MUST contain a .NET XUnit project (`Methy.E2E.csproj`) with `Microsoft.Playwright` NuGet package configured for browser-based end-to-end testing. The project MUST include a `Tests/` folder for test classes (organized by user journey) and a `PageObjects/` folder for page object models. A `playwright.config.ts` MUST exist for Playwright browser configuration. This project is NOT included in `Methy.sln` — it runs independently against the full running stack
+- **FR-041**: A top-level `e2e/` folder MUST contain a .NET XUnit project (`Methy.E2E.csproj`) with `Microsoft.Playwright` NuGet package configured for browser-based end-to-end testing. The project MUST include a `Tests/` folder for test classes (organized by user journey) and a `PageObjects/` folder for page object models. A `playwright.config.ts` MUST exist for Playwright browser configuration. This project is NOT included in `Methy.slnx` — it runs independently against the full running stack
 
 **Git Hooks & Code Quality Automation**
 
@@ -142,7 +142,7 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 
 **API Testing Collections**
 
-- **FR-043**: A top-level `postman/` folder MUST exist containing Postman collection JSON files (one per microservice) and a shared environment file. Collections MUST be organized as: `gateway.postman_collection.json`, `user-service.postman_collection.json`, `restaurant-service.postman_collection.json`, `order-service.postman_collection.json`, `payment-service.postman_collection.json`, `notification-service.postman_collection.json`, `delivery-service.postman_collection.json`, and `methy-local.postman_environment.json` (containing base URLs and placeholder variables). Each collection MUST include at minimum a `Health Check` request (`GET /health`) for the respective service
+- **FR-043**: A top-level `postman/` folder MUST exist containing Postman collection JSON files (one per microservice) and a shared environment file. Collections MUST be organized as: `methy-gateway.postman_collection.json`, `methy-user.postman_collection.json`, `methy-restaurant.postman_collection.json`, `methy-order.postman_collection.json`, `methy-payment.postman_collection.json`, `methy-notification.postman_collection.json`, `methy-delivery.postman_collection.json`, and `methy-local.postman_environment.json` (containing base URLs and placeholder variables). Each collection MUST include at minimum a `Health Check` request (`GET /health`) for the respective service
 
 **Code Formatting**
 
@@ -155,7 +155,7 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 **GitHub Repository Configuration**
 
 - **FR-046**: `.github/PULL_REQUEST_TEMPLATE.md` MUST exist with a checklist including: description of changes, related issue/FR number, tests added/updated, `dotnet build` passes, lint clean, no TODOs without linked issue, and documentation updated if applicable
-- **FR-047**: `.github/dependabot.yml` MUST exist configuring weekly dependency update checks for: `nuget` (directory: `/backend`), `npm` (directory: `/`), `npm` (directory: `/frontend/methy-app`), and `github-actions` (directory: `/`). Each ecosystem MUST have a limit of 5 open PRs and use conventional commit prefixes (`chore(deps):`)
+- **FR-047**: `.github/dependabot.yml` MUST exist configuring monthly dependency update checks for: `nuget` (directory: `/backend`), `npm` (directory: `/`), `npm` (directory: `/frontend/methy-app`), and `github-actions` (directory: `/`). Each ecosystem MUST have a limit of 5 open PRs and use conventional commit prefixes (`chore(deps):`)
 
 **IDE Configuration**
 
@@ -169,14 +169,14 @@ Every commit pushed to any branch triggers the GitHub Actions build pipeline, wh
 
 The word "placeholder" in the requirements above has specific meaning per artifact type:
 
-| Artifact Type | "Placeholder" means | Example |
-|---|---|---|
-| **README.md** (FR-016, FR-033) | A Markdown file with a title, one-sentence purpose description, and a "Coming in Phase X" note | `# Restaurants Feature\nHandles restaurant browsing, search, and menu display.\n\n> Implementation: Phase 3` |
-| **K8s manifests** (FR-019, FR-020, FR-021) | A syntactically valid YAML file with correct apiVersion, kind, metadata, and spec structure using the service's image name and port — deployable to Minikube but the pod will CrashLoopBackOff until real code exists | Valid `Deployment` YAML referencing `methy-gateway:latest` on port 5000 |
-| **OpenAPI stubs** (FR-033) | A valid OpenAPI 3.0 YAML file with `info`, `servers`, and a single `GET /health` path returning 200 — one file per service | Parseable by any OpenAPI validator |
-| **RabbitMQ definitions.json** (FR-036) | A valid JSON file defining the `methy` vhost, one topic exchange (`methy.events`), and one queue (`methy.orders`) with a binding — loadable by RabbitMQ's definition import | JSON matching RabbitMQ definitions schema |
-| **SQL init.sql** (FR-037) | A single `CREATE DATABASE` statement plus a comment block listing future tables | `CREATE DATABASE methy;\nGO\n-- Tables will be created by EF Core migrations` |
-| **Deploy workflow** (FR-027) | A valid YAML workflow file with trigger and jobs keys, all job steps commented out with TODO markers | Passes `actionlint` syntax check |
+| Artifact Type                              | "Placeholder" means                                                                                                                                                                                                   | Example                                                                                                      |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **README.md** (FR-016, FR-033)             | A Markdown file with a title, one-sentence purpose description, and a "Coming in Phase X" note                                                                                                                        | `# Restaurants Feature\nHandles restaurant browsing, search, and menu display.\n\n> Implementation: Phase 3` |
+| **K8s manifests** (FR-019, FR-020, FR-021) | A syntactically valid YAML file with correct apiVersion, kind, metadata, and spec structure using the service's image name and port — deployable to Minikube but the pod will CrashLoopBackOff until real code exists | Valid `Deployment` YAML referencing `methy-gateway:latest` on port 5000                                      |
+| **OpenAPI stubs** (FR-033)                 | A valid OpenAPI 3.0 YAML file with `info`, `servers`, and a single `GET /health` path returning 200 — one file per service                                                                                            | Parseable by any OpenAPI validator                                                                           |
+| **RabbitMQ definitions.json** (FR-036)     | A valid JSON file defining the `methy` vhost, one topic exchange (`methy.events`), and one queue (`methy.orders`) with a binding — loadable by RabbitMQ's definition import                                           | JSON matching RabbitMQ definitions schema                                                                    |
+| **SQL init.sql** (FR-037)                  | A single `CREATE DATABASE` statement plus a comment block listing future tables                                                                                                                                       | `CREATE DATABASE methy;\nGO\n-- Tables will be created by EF Core migrations`                                |
+| **Deploy workflow** (FR-027)               | A valid YAML workflow file with trigger and jobs keys, all job steps commented out with TODO markers                                                                                                                  | Passes `actionlint` syntax check                                                                             |
 
 ### Key Entities
 
@@ -189,7 +189,7 @@ The word "placeholder" in the requirements above has specific meaning per artifa
 
 ---
 
-## Folder Structure *(canonical reference)*
+## Folder Structure _(canonical reference)_
 
 All functional requirements reference paths from this tree. This is the single source of truth for the scaffolded output.
 
@@ -235,7 +235,7 @@ Methy/                                   ← repository root
 │   └── delivery-service.openapi.yml
 │
 ├── backend/                             ← FR-001
-│   ├── Methy.sln
+│   ├── Methy.slnx
 │   ├── Directory.Build.props            ← FR-005
 │   ├── Directory.Packages.props         ← FR-006
 │   │
@@ -284,7 +284,7 @@ Methy/                                   ← repository root
 │       └── (page object models)
 │
 ├── frontend/                            ← FR-013
-│   └── methy-app/                      ← Angular 19 workspace
+│   └── methy-app/                      ← Angular 21 workspace
 │       ├── angular.json
 │       ├── package.json
 │       ├── tsconfig.json
@@ -319,10 +319,10 @@ Methy/                                   ← repository root
 │   │       └── init.sql               ← FR-037
 │   │
 │   ├── k8s/                            ← FR-018
-│   │   ├── namespace.yml
-│   │   ├── deployments/               ← FR-019 (one per service)
-│   │   ├── services/                  ← FR-020 (one per service)
-│   │   └── ingress/                   ← FR-021
+│   │   ├── namespace.yaml
+│   │   ├── deployments.yaml           ← FR-019
+│   │   ├── services.yaml              ← FR-020
+│   │   └── ingress.yaml               ← FR-021
 │   │
 │   └── observability/
 │       ├── prometheus/
@@ -332,13 +332,13 @@ Methy/                                   ← repository root
 │       └── jaeger/                    ← FR-024
 │
 ├── postman/                             ← FR-043 (API testing collections)
-│   ├── gateway.postman_collection.json
-│   ├── user-service.postman_collection.json
-│   ├── restaurant-service.postman_collection.json
-│   ├── order-service.postman_collection.json
-│   ├── payment-service.postman_collection.json
-│   ├── notification-service.postman_collection.json
-│   ├── delivery-service.postman_collection.json
+│   ├── methy-gateway.postman_collection.json
+│   ├── methy-user.postman_collection.json
+│   ├── methy-restaurant.postman_collection.json
+│   ├── methy-order.postman_collection.json
+│   ├── methy-payment.postman_collection.json
+│   ├── methy-notification.postman_collection.json
+│   ├── methy-delivery.postman_collection.json
 │   └── methy-local.postman_environment.json
 │
 ├── scripts/                             ← FR-045 (dev automation)
@@ -364,19 +364,21 @@ Methy/                                   ← repository root
 ### Backend Project Naming Convention
 
 All backend project names follow this convention:
+
 - **Gateway**: `Methy.Gateway`
 - **Domain services**: `Methy.Services.<Domain>` (e.g., `Methy.Services.User`, `Methy.Services.Restaurant`)
 - **Shared library**: `Methy.Shared`
 - **Test projects**: `<SourceProjectName>.Tests` (e.g., `Methy.Services.User.Tests`)
 
 Physical layout under `backend/`:
+
 - Source projects live under `backend/src/<ProjectName>/`
 - Test projects live under `backend/tests/<ProjectName>.Tests/`
-- `Methy.sln` at `backend/` root references all 16 projects with solution folders `src` and `tests`
+- `Methy.slnx` at `backend/` root references all 16 projects with solution folders `src` and `tests`
 
 ---
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 
@@ -407,7 +409,7 @@ Physical layout under `backend/`:
 
 ### Session 2026-04-30
 
-- Q: Should the Angular 19 scaffold use NgModule-based architecture (CoreModule/SharedModule) or standalone-first architecture? → A: Standalone-first (Angular 19 default) — no AppModule/CoreModule/SharedModule; providers via app.config.ts; standalone components throughout
+- Q: Should the Angular 21 scaffold use NgModule-based architecture (CoreModule/SharedModule) or standalone-first architecture? → A: Standalone-first (Angular 21 default) — no AppModule/CoreModule/SharedModule; providers via app.config.ts; standalone components throughout
 - Q: Should Docker Compose use a single shared network or segmented networks (backend/monitoring)? → A: Single network — all containers on one `methy-network` bridge network (simplicity for Phase 1)
 - Q: Which OS runner should GitHub Actions workflows use? → A: `ubuntu-latest` — 1:1 free-tier minute consumption, faster Docker builds, .NET 10 and Angular build cross-platform
 - Q: What color palette should the Angular Material theme use? → A: Orange primary, Deep Purple accent — food delivery brand association, accessible contrast, both native Material Design 3 palettes; light and dark mode variants
