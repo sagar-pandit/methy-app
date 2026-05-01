@@ -7,6 +7,7 @@ Architecture decisions, technical guides, and product context.
 | Folder                         | Description                                                                            |
 | ------------------------------ | -------------------------------------------------------------------------------------- |
 | [architecture/](architecture/) | Architectural Decision Records (ADRs), folder structure rationale, and design diagrams |
+| [guides/](guides/)             | Setup, onboarding, and contribution playbooks                                          |
 | [prompts/](prompts/)           | Raw and refined prompts used during Speckit planning sessions                          |
 
 ## Key Documents

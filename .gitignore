@@ -14,9 +14,10 @@ dist/
 
 # IDE
 .vs/
-*.user
 *.suo
 .idea/
+# Visual Studio .user settings files (scoped to .csproj.user pattern to avoid matching directories)
+*.csproj.user
 
 # OS
 .DS_Store

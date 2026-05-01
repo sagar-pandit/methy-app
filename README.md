@@ -1,6 +1,6 @@
 # Methy — Food Delivery Platform
 
-A microservices-based food delivery platform built with .NET 10, Angular 19, and Docker.
+A microservices-based food delivery platform built with .NET 10, Angular 21, and Docker.
 
 ---
 
@@ -9,7 +9,7 @@ A microservices-based food delivery platform built with .NET 10, Angular 19, and
 Methy is a full-stack food delivery application consisting of:
 
 - **7 ASP.NET Core microservices** — Gateway, User, Restaurant, Order, Payment, Notification, Delivery
-- **Angular 19 SPA** — standalone components, Material 3 design system, SCSS
+- **Angular 21 SPA** — standalone components, Material 3 design system, SCSS, ESLint
 - **SQL Server 2022** — per-service databases (logical separation, shared container in dev)
 - **RabbitMQ** — async event bus for inter-service communication
 - **Docker Compose V2** — single-command local environment
@@ -22,7 +22,7 @@ Methy is a full-stack food delivery application consisting of:
 | -------------- | --------------- | ----------------------------------------------------------------- |
 | .NET SDK       | 10.0.100        | [dot.net](https://dotnet.microsoft.com/download)                  |
 | Node.js        | 20.x LTS        | [nodejs.org](https://nodejs.org/)                                 |
-| Angular CLI    | 19.x            | `npm install -g @angular/cli@19`                                  |
+| Angular CLI    | 21.x            | `npm install -g @angular/cli@21`                                  |
 | Docker Desktop | 4.x             | [docker.com](https://www.docker.com/products/docker-desktop)      |
 | PowerShell     | 7.x             | [github.com/PowerShell](https://github.com/PowerShell/PowerShell) |
 
@@ -63,7 +63,7 @@ ng serve
 ### 5. Run backend tests
 
 ```bash
-dotnet test backend/Methy.sln
+dotnet test backend/Methy.slnx
 ```
 
 ---
@@ -102,9 +102,10 @@ methy/
 │   │   └── Methy.Shared/      # Shared class library (DTOs, constants, helpers)
 │   └── tests/                 # XUnit test projects (1 per service)
 ├── frontend/
-│   └── methy-app/             # Angular 19 SPA (standalone, Material 3)
+│   └── methy-app/             # Angular 21 SPA (standalone, Material 3)
 │       └── src/app/
 │           ├── core/           # Auth interceptor, guards, services
+│           ├── shared/         # Standalone shared components, directives, pipes
 │           └── features/       # Feature modules: restaurants, orders, delivery, admin, profile
 ├── e2e/                       # Playwright .NET end-to-end tests (standalone project)
 ├── infra/
@@ -138,7 +139,7 @@ Run `dotnet --version` and verify it shows `10.0.x`. Check `global.json` at the 
 
 ### Port conflicts
 
-Stop other services using the ports listed above, or edit the host-side ports in `infra/docker/docker-compose.override.yml`.
+Stop other services using the ports listed above, or edit the host-side ports in `infra/docker/docker-compose.yml`.
 
 ---
 

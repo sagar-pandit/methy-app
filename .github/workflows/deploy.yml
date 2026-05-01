@@ -15,6 +15,14 @@ on:
           - staging
           - production
 
+jobs:
+  placeholder:
+    name: Deploy (not yet configured)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: echo "Deployment target not yet configured. See workflow comments."
+
 # jobs:
 #   deploy:
 #     name: Deploy to ${{ inputs.environment }}

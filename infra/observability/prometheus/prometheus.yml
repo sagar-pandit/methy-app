@@ -2,6 +2,8 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
 
+# NOTE: /metrics endpoints will return 404 until Phase 7 (Observability)
+# when prometheus-net.AspNetCore or OpenTelemetry exporter is wired up.
 scrape_configs:
   - job_name: 'methy-gateway'
     static_configs:
