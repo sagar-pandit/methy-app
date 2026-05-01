@@ -1,0 +1,32 @@
+# CODEOWNERS
+# Each line: <path pattern> <GitHub username(s)>
+# The last matching pattern takes precedence.
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global fallback — owner reviews everything unless overridden below
+* @sagar-pandit
+
+# Backend services
+/backend/                         @sagar-pandit
+/backend/src/Methy.Gateway/       @sagar-pandit
+/backend/src/Methy.Services.User/ @sagar-pandit
+/backend/src/Methy.Services.Order/ @sagar-pandit
+/backend/src/Methy.Services.Payment/ @sagar-pandit
+/backend/src/Methy.Services.Restaurant/ @sagar-pandit
+/backend/src/Methy.Services.Notification/ @sagar-pandit
+/backend/src/Methy.Services.Delivery/ @sagar-pandit
+/backend/src/Methy.Shared/        @sagar-pandit
+
+# Frontend
+/frontend/                        @sagar-pandit
+
+# Infrastructure & CI/CD — require owner review for any infra changes
+/infra/                           @sagar-pandit
+/.github/workflows/               @sagar-pandit
+/.github/dependabot.yml           @sagar-pandit
+
+# API contracts
+/api/                             @sagar-pandit
+
+# E2E tests
+/e2e/                             @sagar-pandit
