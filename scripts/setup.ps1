@@ -48,7 +48,7 @@ Pop-Location
 
 # ─── .NET restore ──────────────────────────────────────────────────────────
 Write-Step 'Restoring .NET packages'
-dotnet restore backend/Methy.sln
+dotnet restore backend/Methy.slnx
 
 # ─── Playwright browser install ────────────────────────────────────────────
 Write-Step 'Installing Playwright Chromium browser'

@@ -16,8 +16,8 @@ Closes #<!-- issue number -->
 
 ## Checklist
 
-- [ ] Code builds without errors (`dotnet build backend/Methy.sln`)
-- [ ] All tests pass (`dotnet test backend/Methy.sln`)
+- [ ] Code builds without errors (`dotnet build backend/Methy.slnx`)
+- [ ] All tests pass (`dotnet test backend/Methy.slnx`)
 - [ ] Frontend builds (`ng build --configuration production`)
 - [ ] Linting passes (`ng lint`)
 - [ ] Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
